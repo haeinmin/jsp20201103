@@ -12,74 +12,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	for (int i=0; i<5; i++) {
-	%>
-	
-	<%
-	out.print("<h1>Lorem ipsum dolor sit amet.</h1>");
-	%>
-	
-	<%
-	}%>
-	
+	<h1>Lorem ipsum dolor.</h1>
+	<% String name = "java"; %>
+	<%=name %>
+	<hr />
 	<%
 	java.util.List<String> list = new ArrayList<>();
 	list.add("java");
 	list.add("jsp");
-	list.add("spring");
-	list.add("dbms");
-	
+	list.add("css");
+	list.add("jquery");
+	list.add("spring");	
 	%>
-	
 	<ul>
 	<%
-	for (String item : list) {
+	for (String item: list) {
 	%>
-	<li>
-	<% out.print(item); %>
-	</li>
-	
-	<%
-	} %>
-	
+	<li><%= item %></li>
+	<% } %>
 	</ul>
 	
+	</hr>
+	
 	<%
-	boolean danger = false;
+	String status = "danger";
 	%>
 	
-	<%
-	if (danger) {
-	%>
-	
-	<h1 class = "text-danger"> DANGER!!! </h1>
-	
-	<%
-	} else {%>
-	
-	<h1 class = "text-info"> info </h1>
-	<%
-	}%>
-	
-	<%
-	String result = "";
-	for (int i=0;i<5;i++) {
-	%>
-	<%	
-		result += "*";
-	out.print(result);
-	%>
-	<br>
-	<%
-	}
-	
-	%>
-	
-	
-	
-	
-	
-	
+	<h1 class="text-<%= status %>">Lorem ipsum dolor.</h1>
 </body>
 </html>
