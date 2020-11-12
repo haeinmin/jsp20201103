@@ -1,10 +1,15 @@
-<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <% request.setCharacterEncoding("utf-8"); %>
+
+<%@page import="java.sql.*"%>
 <%
-	String sql = "SELECT ename FROM employee WHERE eno = 7499";
+	String dno = request.getParameter("dno");
+	if (dno == null || dno.isEmpty()) {
+		dno = "0";
+	}
+	String sql = "SELECT loc FROM department WHERE dno = " + dno;
 	// 1. jdbc 드라이버 로딩
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -27,9 +32,9 @@
 	
 	// 5. 쿼리 실행 결과 사용
 	
-	String name = "";
+	String loc = "";
 	if (rs.next()) { // next() returns boolean. 다음요소가 있으면 true
-		name = rs.getString("ename");
+		loc = rs.getString("loc");
 	}
 		
 	// 6. statement 종료
@@ -38,6 +43,7 @@
 	// 7. db connection 종료
 	con.close();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +56,6 @@
 </head>
 <body>
 <h1>성공</h1>
-<h1><%=name %></h1>
+<h1><%= loc %></h1>
 </body>
 </html>

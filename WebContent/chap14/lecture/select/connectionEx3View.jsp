@@ -1,10 +1,14 @@
-<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <% request.setCharacterEncoding("utf-8"); %>
+<%@page import="java.sql.*"%>
 <%
-	String sql = "SELECT ename FROM employee WHERE eno = 7499";
+	String eno = request.getParameter("eno");
+	if (eno == null || eno.isEmpty()) {
+		eno = "0";
+	}
+	String sql = "SELECT ename FROM employee WHERE eno = " + eno;
 	// 1. jdbc 드라이버 로딩
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -50,6 +54,6 @@
 </head>
 <body>
 <h1>성공</h1>
-<h1><%=name %></h1>
+<h1><%= name %></h1>
 </body>
 </html>
