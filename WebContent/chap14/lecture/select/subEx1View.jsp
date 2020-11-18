@@ -40,6 +40,6 @@ con.close();
 <title>Insert title here</title>
 </head>
 <body>
-<h1><%=eno %>의 상사는 <%=managerName %></h1>
+<h1><%=eno %>의 관리자는 <%=managerName %></h1>
 </body>
 </html>
