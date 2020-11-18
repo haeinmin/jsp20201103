@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.sql.*" %>
-<%@ page import = "chap14.*" %>
+<% request.setCharacterEncoding("utf-8"); %>
+
 <%
-String sql = "select eno, ename FROM employee";
-List<Employee> list = new ArrayList<>();
+String eno = request.getParameter("eno");
+
+String sql = "SELECT ename FROM employee WHERE eno = (SELECT manager FROM employee WHERE eno=?)";
 
 Class.forName("oracle.jdbc.driver.OracleDriver");
 String url = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -13,20 +15,20 @@ String id = "c##mydbms";
 String pw = "admin";
 
 Connection con = DriverManager.getConnection(url, id, pw);
-Statement stmt = con.createStatement();
-ResultSet rs = stmt.executeQuery(sql);
 
-while(rs.next()) {
-	Employee e = new Employee();
-	e.setEno(rs.getInt(1));
-	e.setEname(rs.getString(2));
-	list.add(e);
+PreparedStatement pstmt = con.prepareStatement(sql);
+pstmt.setInt(1, Integer.valueOf(eno));
+
+ResultSet rs = pstmt.executeQuery();
+
+String managerName = "";
+if (rs.next()) {
+	managerName = rs.getString(1);
 }
 
-stmt.close();
+pstmt.close();
 con.close();
 %>
-<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,29 +40,6 @@ con.close();
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container"></div>
-	<h1>사원 목록</h1>
-	<table class="table">
-	<tr>
-		<th>사번</th>
-		<th>이름</th>
-	</tr>
-	<%
-	for (Employee emp : list) {
-	%>
-	<tr>
-		<td>
-			<a href="joinEx7Detail.jsp?eno=<%=emp.getEno()%>">
-			<%= emp.getEno()%>	
-			</a>
-		</td>
-		<td>
-			<%=emp.getEname() %>
-		</td>
-	</tr>
-	<%
-	}	
-	%>
-	</table>
+<h1><%=eno %>의 상사는 <%=managerName %></h1>
 </body>
 </html>
