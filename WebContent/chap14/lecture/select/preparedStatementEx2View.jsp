@@ -8,10 +8,10 @@ String dno = request.getParameter("dno");
 String sql = "SELECT max(salary), min(salary), avg(salary), sum(salary)"
 			 + " FROM employee" + " WHERE dno = ?";
 
-Class.forName("oracle.jdbc.driver.OracleDriver");
-String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-String id = "c##mydbms";
-String pw = "admin";
+Class.forName("com.mysql.cj.jdbc.Driver");
+String url = "jdbc:mysql://localhost:3306/lecture?serverTimezone=Asia/Seoul";
+String id = "root";
+String pw = "adminAdmin1";
 
 Connection con = DriverManager.getConnection(url, id, pw);
 

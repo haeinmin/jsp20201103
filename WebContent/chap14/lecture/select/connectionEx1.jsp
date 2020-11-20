@@ -6,16 +6,16 @@
 <%
 	String sql = "SELECT ename FROM employee WHERE eno = 7499";
 	// 1. jdbc 드라이버 로딩
-	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Class.forName("com.mysql.cj.jdbc.Driver");
 
 	// 2. db connection 구함
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-	String id = "c##mydbms";
-	String pw = "admin";
+	String url = "jdbc:mysql://localhost:3306/lecture?serverTimezone=Asia/Seoul";
+	String id = "root";
+	String pw = "adminAdmin1";
 	con = DriverManager.getConnection(url, id, pw); //db 위치, 사용자 id, pw 통해 연결
 	
 	// 3. 쿼리 실행을 위한 statement 객체 생성
