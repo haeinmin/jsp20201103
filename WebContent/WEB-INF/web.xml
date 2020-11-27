@@ -16,6 +16,7 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
+
 	<context-param>
 	<description>로깅 여부</description>
 		<param-name>logEnabled</param-name>
@@ -28,4 +29,5 @@
 		<param-value>5</param-value>
 	</context-param>
 	
+
 </web-app>
