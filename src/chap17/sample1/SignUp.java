@@ -1,11 +1,8 @@
-package chap17;
+package chap17.sample1;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,56 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletEx12
+ * Servlet implementation class SignUp
  */
-@WebServlet("/ex12")
-public class ServletEx12 extends HttpServlet {
+@WebServlet("/sample1/signup")
+public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletEx12() {
+    public SignUp() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-	   @Override
-	public void init() throws ServletException {
-		   ServletContext application = getServletContext();
-		   List<String> list = new ArrayList<>();
-		   list.add("java");
-		   list.add("html");
-		   list.add("css");
-		   list.add("Servlet");
-		   list.add("tomcat");
-		   application.setAttribute("database", list);
-		   
-		   super.init();
-	}
 
 	/**
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		if (id == null) {
-			id = "0";
-		}
-		int idx = Integer.valueOf(id);
-		
-		//read db
-		ServletContext application = getServletContext();
-		List<String> list = (List<String>) application.getAttribute("database");
-		
-		String name = list.get(idx);
-		
-		//request attribut에 set
-		request.setAttribute("name", name);
-		
-		
-		//forward
-		String path = "/chap17/lecture/servletEx12View.jsp";
+
+		String path = "/chap17/lecture/sample1/form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);
 	}
