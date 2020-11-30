@@ -54,12 +54,10 @@ public class FormServlet extends HttpServlet {
 //		dispatcher.forward(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
@@ -86,6 +84,8 @@ public class FormServlet extends HttpServlet {
 	
 
 }
+
+
 
 
 
