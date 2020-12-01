@@ -29,5 +29,48 @@
 		<param-value>5</param-value>
 	</context-param>
 	
+	<servlet>
+	  <servlet-name>ControllerUsingURI</servlet-name>
+	  <servlet-class>chap18.ControllerUsingURI</servlet-class>
+	  <init-param>
+	    <param-name>configFile</param-name>
+	    <param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+	  </init-param>
+	</servlet>
+	
+	<servlet-mapping>
+	  <servlet-name>ControllerUsingURI</servlet-name>
+	  <url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+	  <filter-name>filter01</filter-name>
+	  <filter-class>chap19.lecture.Filter01</filter-class>
+	</filter>
+	
+	<filter>
+  	  <filter-name>filter02</filter-name>
+  	  <filter-class>chap19.lecture.Filter02</filter-class>
+	</filter>
+	
+
+	<filter-mapping>
+	  <filter-name>filter02</filter-name>
+	  <url-pattern>/filter/ex1</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+	  <filter-name>filter01</filter-name>
+	  <url-pattern>/filter/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+  	  <filter-name>request-encoding</filter-name>
+  	  <filter-class>chap19.lecture.Filter03ReqEncoding</filter-class>
+	</filter>
+	<filter-mapping>
+	  <filter-name>request-encoding</filter-name>
+	  <url-pattern>/filter/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

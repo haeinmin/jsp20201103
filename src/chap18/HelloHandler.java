@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class HelloHandler implements CommandHandler {
 	@Override
-	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("hello", "안녕하세요!");
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		req.setAttribute("hello", "안녕하세요!");
 		return "/WEB-INF/view/chap18/hello.jsp";
 	}
 }
