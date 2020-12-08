@@ -45,13 +45,13 @@ public class AddEmployeeServlet extends HttpServlet {
 		
 		String sql = "INSERT INTO employee (eno, ename, dno) VALUES (?, ?, ?)";
 		
-		String url = "jdbc:mysql://localhost:3306/lecture?serverTimezone=Asia/Seoul";
-		String id = "root";
-		String pw = "adminAdmin1";
+		String url = "jdbc:oracle:thin:@localhost:49161:xe";
+		String id = "system";
+		String pw = "admin";
 		
 		try {
 			// 1. load driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// 2. db connection 구함
 			Connection con = DriverManager.getConnection(url, id, pw);

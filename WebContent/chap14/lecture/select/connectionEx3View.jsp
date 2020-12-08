@@ -17,9 +17,9 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String url = "jdbc:oracle:thin:@localhost:49161:xe";
 	String id = "system";
-	String pw = "adminAdmin1";
+	String pw = "admin";
 	con = DriverManager.getConnection(url, id, pw); //db 위치, 사용자 id, pw 통해 연결
 	
 	// 3. 쿼리 실행을 위한 statement 객체 생성
